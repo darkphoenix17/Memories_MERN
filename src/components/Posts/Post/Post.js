@@ -3,9 +3,13 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@
 import { MdDelete, MdMoreHoriz, MdThumbUp } from "react-icons/md";  //check from https://react-icons.github.io/react-icons
 import moment from "moment";
 import useStyles from './styles';
+import { useDispatch } from 'react-redux';
+
+import { deletePost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
@@ -25,7 +29,7 @@ const Post = ({ post, setCurrentId }) => {
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" onClick={() => { }}><MdThumbUp fontSize="default" />  Like {post.likeCount} </Button>
-                <Button size="small" color="primary" onClick={() => { }}><MdDelete fontSize="default" />  Delete</Button>
+                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><MdDelete fontSize="default" />  Delete</Button>
             </CardActions>
         </Card>
     );
