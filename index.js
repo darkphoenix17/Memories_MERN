@@ -13,6 +13,9 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+app.get('/',(req,res)=>{
+    res.send('Hello to Memories API');
+})
 app.use('/posts', postRoutes);
 
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASS}@cluster0.nl28v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
